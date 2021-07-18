@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet" />
+        <meta name="title" content="나랑 닮은 재벌 찾기" />
+        <!-- Bootstrap CSS -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+            crossorigin="anonymous"
+        />
+
+        <title>나랑 닮은 재벌은 누규??</title>
+        <link rel="stylesheet" href="style.css" />
+
+        <script
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"
+        ></script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145482737-6"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', 'UA-145482737-6');
+        </script>
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+        <script
+            type="text/javascript"
+            src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60f3decc65288c89"
+        ></script>
+
+        <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+        <!-- 카카오톡 공유하기 Javascript SDK포함하기 -->
+        <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    </head>
+
+    <body>
+        <section class="section">
+            <img src="img/top.jpg" align="center" style="max-width: 100%; height: auto;" />
+        </section>
+
+        <div class="forad">
+            <ins
+                class="kakao_ad_area"
+                style="display: none;"
+                data-ad-unit="DAN-cZXsHmvuwnNmmCce"
+                data-ad-width="100%"
+                data-ad-height="auto"
+            ></ins>
+        </div>
+
+        <div class="mt-3 container file-upload">
+            <div class="image-upload-wrap">
+                <input
+                    class="file-upload-input"
+                    type="file"
+                    onchange="readURL(this);"
+                    accept="image/*"
+                    src="img/search.jpg"
+                />
+                <div class="drag-text">
+                    <img
+                        src="img/search.jpg"
+                        style="max-width: 100%; height: auto; margin: 0 auto;"
+                    />
+                </div>
+            </div>
+            <div class="file-upload-content">
+                <img class="file-upload-image" id="face-image" src="#" alt="your image" />
+                <div id="loading" class="animated bounce">
+                    <!-- <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div> -->
+                    <p class="text-center">
+                        <!-- 물고기 사진을 분석중입니다. -->
+                        <img
+                            src="img/searching.gif"
+                            align="center"
+                            style="max-width: 50%; height: auto;"
+                        />
+                    </p>
+                </div>
+                <p class="result-message"></p>
+                <div id="face_img"></div>
+                <div id="label-container" class="d-flex flex-column justify-content-around"></div>
+
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                <div class="addthis_inline_share_toolbox"></div>
+
+                <!-- <a id="create-kakao-link-btn" href="javascript:sendLink();">
+                    <img
+                        src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png"
+                    />
+                </a>
+                <script type="text/javascript">
+                    // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+                    Kakao.init('e8736fee57ea83e475ef91a509a9ef5a');
+                    // SDK 초기화 여부를 판단합니다.
+                    console.log(Kakao.isInitialized());
+                            Kakao.Link.createScrapButton({
+                                container: '#create-kakao-link-btn',
+                                requestUrl: 'https://richguy.netlify.app',
+                                templateId: {57304}
+                            });
+                </script> -->
+
+                <div class="pt-3 image-title-wrap">
+                    <button
+                        type="button p-2"
+                        class="try-again-btn"
+                        onclick="gaReload1();"
+                        data-toggle="modal"
+                        data-target="#adModal"
+                    >
+                        <span class="try-again-text">다른 사진으로 재시도</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="webcam-container"></div>
+        <div id="label-container"></div>
+        <div class="ad-banner">
+            <ins
+                class="kakao_ad_area"
+                style="display: none;"
+                data-ad-unit="DAN-QmFWariVcYHfl9u9"
+                data-ad-width="320"
+                data-ad-height="100"
+            ></ins>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+        <script>
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('.image-upload-wrap').hide();
+                        $('#loading').show();
+                        $('.file-upload-image').attr('src', e.target.result);
+                        $('.file-upload-content').show();
+                        $('.image-title').html(input.files[0].name);
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                    init().then(function () {
+                        console.log('hello');
+                        predict();
+                        $('#loading').hide();
+                    });
+                } else {
+                    removeUpload();
+                }
+            }
+
+            function removeUpload() {
+                $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+                $('.file-upload-content').hide();
+                $('.image-upload-wrap').show();
+            }
+            $('.image-upload-wrap').bind('dragover', function () {
+                $('.image-upload-wrap').addClass('image-dropping');
+            });
+            $('.image-upload-wrap').bind('dragleave', function () {
+                $('.image-upload-wrap').removeClass('image-dropping');
+            });
+        </script>
+
+        <script type="text/javascript">
+            // More API functions here:
+            // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
+
+            // the link to your model provided by Teachable Machine export panel
+            const URL = 'https://teachablemachine.withgoogle.com/models/6p2np4sAP/';
+
+            let model, webcam, labelContainer, maxPredictions;
+
+            // Load the image model and setup the webcam
+            async function init() {
+                const modelURL = URL + 'model.json';
+                const metadataURL = URL + 'metadata.json';
+
+                // load the model and metadata
+                // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+                // or files from your local hard drive
+                // Note: the pose library adds "tmImage" object to your window (window.tmImage)
+                model = await tmImage.load(modelURL, metadataURL);
+                maxPredictions = model.getTotalClasses();
+                labelContainer = document.getElementById('label-container');
+                for (let i = 0; i < maxPredictions; i++) {
+                    // and class labels
+                    labelContainer.appendChild(document.createElement('div'));
+                }
+            }
+
+            // run the webcam image through the image model
+            async function predict() {
+                // predict can take in an image, video or canvas html element
+                var image = document.getElementById('face-image');
+                const prediction = await model.predict(image, false);
+                prediction.sort((a, b) => parseFloat(b.probability) - parseFloat(a.probability));
+                console.log(prediction[0].className);
+                var resultMessage, face_div, photo;
+                switch (prediction[0].className) {
+                    case '참돔':
+                        resultMessage = '참돔입니다!';
+                        face_div = document.getElementById('face_img');
+                        photo = String('/image/chamdom.jpg');
+                        break;
+                    case '우럭':
+                        resultMessage = '우럭입니다!';
+                        face_div = document.getElementById('face_img');
+                        photo = String('/image/chamdom.jpg');
+                        break;
+                    case '감성돔':
+                        resultMessage = '감성돔입니다!';
+                        face_div = document.getElementById('face_img');
+                        photo = String('/image/chamdom.jpg');
+                        break;
+                    case '홍돔':
+                        resultMessage = '홍돔입니다!';
+                        face_div = document.getElementById('face_img');
+                        photo = String('/image/chamdom.jpg');
+                        break;
+                    case '돌돔':
+                        resultMessage = '돌돔입니다!';
+                        face_div = document.getElementById('face_img');
+                        photo = String('/image/chamdom.jpg');
+                        break;
+                    case '어름돔':
+                        resultMessage = '어름돔입니다!';
+                        face_div = document.getElementById('face_img');
+                        photo = String('/image/chamdom.jpg');
+                        break;
+                    case '방울복랑':
+                        resultMessage = '방울복랑입니다.';
+                        face_div = document.getElementById('face_img');
+                        photo = String('/image/chamdom.jpg');
+                        break;
+                    case '민어':
+                        resultMessage = '인어입니다!';
+                        face_div = document.getElementById('face_img');
+                        photo = String('/image/chamdom.jpg');
+                        break;
+                    case '점성어':
+                        resultMessage = '점성어입니다!';
+                        face_div = document.getElementById('face_img');
+                        photo = String('/image/chamdom.png');
+                        break;
+                    case '농어':
+                        resultMessage = '농어입니다!';
+                        face_div = document.getElementById('face_img');
+                        photo = String('/image/chamdom.jpg');
+                        break;
+                    case '라운드폼파노':
+                        resultMessage = '라운드폼파노입니다!';
+                        face_div = document.getElementById('face_img');
+                        photo = String('/image/chamdom.jpg');
+                        break;
+                    case '감당돔':
+                        resultMessage = '감당돔입니다.';
+                        face_div = document.getElementById('face_img');
+                        photo = String('/image/chamdom.jpg');
+                        break;
+                    case '동갈돗돔':
+                        resultMessage = '동갈돗돔입니다!';
+                        face_div = document.getElementById('face_img');
+                        photo = String('/image/chamdom.jpg');
+                    case '강도다리':
+                        resultMessage = '강도다리입니다!';
+                        face_div = document.getElementById('face_img');
+                        photo = String('/image/chamdom.jpg');
+                    case '광어':
+                        resultMessage = '광어입니다!';
+                        face_div = document.getElementById('face_img');
+                        photo = String('/image/chamdom.jpg');
+                    case '방어또는부시리':
+                        resultMessage = '방어 또는 부시리입니다! 아래 설명을 참고하세요!';
+                        face_div = document.getElementById('face_img');
+                        photo = String('/image/chamdom.jpg');
+                    case '자바리친구들':
+                        resultMessage = '아래 설명을 참고하세요!!';
+                        face_div = document.getElementById('face_img');
+                        photo = String('/image/chamdom.jpg');
+
+                        break;
+                    default:
+                        resultMessage = '다시시도하세요';
+                        break;
+                }
+                $('.result-message').html(resultMessage);
+                face_div.innerHTML = '<img src =' + photo + " width = '450' >";
+
+                for (let i = 0; i < 5; i++) {
+                    //5개만.
+                    const classPrediction =
+                        prediction[i].className +
+                        ': ' +
+                        parseInt(prediction[i].probability.toFixed(2) * 100);
+                    labelContainer.childNodes[i].innerHTML = classPrediction + '%';
+                }
+            }
+        </script>
+
+        <div id="disqus_thread"></div>
+        <script>
+            /**
+             *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+             *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+            /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+            (function () {
+                // DON'T EDIT BELOW THIS LINE
+                var d = document,
+                    s = d.createElement('script');
+                s.src = 'https://da6-gamsung.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript
+            >Please enable JavaScript to view the
+            <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript
+        >
+        <!-- Optional JavaScript; choose one of the two! -->
+
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+            crossorigin="anonymous"
+        ></script>
+
+        <footer class="footer pt-5 container d-flex justify-content-center">
+            <div>
+                <p>&copy; 왓더컴퍼니 2021. All Rights Reserved.</p>
+            </div>
+        </footer>
+
+        <div
+            class="modal fade"
+            id="adModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="adModalLabel"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="adModalLabel">
+                            아래 재시도 버튼을 눌러주세요.
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body d-flex justify-content-center">
+                        <ins
+                            class="kakao_ad_area"
+                            style="display: none;"
+                            data-ad-unit="DAN-6a1nNm7ea5ohuVF1"
+                            data-ad-width="300"
+                            data-ad-height="250"
+                        ></ins>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="button p-2" class="try-again-btn" onclick="gaReload2();">
+                            <span class="try-again-text">다른 사진으로 재시도</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function gaReload1() {
+                gtag('event', '다른 사진으로 재시도 1차', {
+                    event_category: '다른 사진으로 재시도',
+                });
+            }
+            function gaReload2() {
+                window.location.reload();
+            }
+        </script>
+
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous"
+        />
+
+        <script
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"
+        ></script>
+        <!-- Button trigger modal -->
+        <script>
+            function openModal() {
+                $('#adModal').modal('show');
+            }
+        </script>
+
+        <!-- Copyright (c) 2021 by Aaron Vanston (https://codepen.io/aaronvanston/pen/yNYOXR)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. -->
+
+        <!-- 조코딩 유튜브 참고하여 제작 -->
+    </body>
+</html>
