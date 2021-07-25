@@ -3,6 +3,12 @@ body {
   background-color: #ffffff;
 }
 
+.face_div {
+  text-align: center;
+  max-width:100%;
+  height:auto;
+}
+
 .file-upload {
     border-radius: 10px;
     border: solid 1.5px #f6f7fa;
