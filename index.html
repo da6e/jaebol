@@ -46,14 +46,15 @@
             gtag('config', 'UA-145482737-6');
         </script>
         <!-- Go to www.addthis.com/dashboard to customize your tools -->
-        <script
+        <!-- <script
             type="text/javascript"
             src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60f3decc65288c89"
-        ></script>
+        ></script> -->
 
         <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
         <!-- 카카오톡 공유하기 Javascript SDK포함하기 -->
         <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+        <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     </head>
 
     <body>
@@ -106,25 +107,30 @@
                 <div id="face_img"></div>
                 <div id="label-container" class="d-flex flex-column justify-content-around"></div>
 
-                <!-- Go to www.addthis.com/dashboard to customize your tools -->
-                <div class="addthis_inline_share_toolbox"></div>
+                <!-- Go to www.addthis.com/dashboard to customize your tools 
+                <div class="addthis_inline_share_toolbox"></div> -->
 
-                <!-- <a id="create-kakao-link-btn" href="javascript:sendLink();">
+                <div id="btnKakao">
                     <img
-                        src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png"
+                        src="https://da6.netlify.app/kakao.png"
+                        style="max-width: 50%; height: auto; margin: 0 auto;"
+                        id="kakao-link-btn"
+                        alt="카카오톡 링크 공유하기"
                     />
-                </a>
+                </div>
+                <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
                 <script type="text/javascript">
-                    // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+                    //<![CDATA[
+                    // // 사용할 앱의 JavaScript 키를 설정해 주세요.
                     Kakao.init('e8736fee57ea83e475ef91a509a9ef5a');
-                    // SDK 초기화 여부를 판단합니다.
-                    console.log(Kakao.isInitialized());
-                            Kakao.Link.createScrapButton({
-                                container: '#create-kakao-link-btn',
-                                requestUrl: 'https://richguy.netlify.app',
-                                templateId: {57304}
-                            });
-                </script> -->
+                    // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+                    Kakao.Link.createScrapButton({
+                        container: '#kakao-link-btn',
+                        requestUrl: 'https://richguy.netlify.app/',
+                        templateId: 57304,
+                    });
+                    //]]>
+                </script>
 
                 <div class="pt-3 image-title-wrap">
                     <button
@@ -193,7 +199,7 @@
             // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 
             // the link to your model provided by Teachable Machine export panel
-            const URL = 'https://teachablemachine.withgoogle.com/models/6p2np4sAP/';
+            const URL = 'https://teachablemachine.withgoogle.com/models/eBetufuaJ/';
 
             let model, webcam, labelContainer, maxPredictions;
 
@@ -224,88 +230,132 @@
                 console.log(prediction[0].className);
                 var resultMessage, face_div, photo;
                 switch (prediction[0].className) {
-                    case '참돔':
-                        resultMessage = '참돔입니다!';
+                    case '이재용':
+                        resultMessage = ' ';
                         face_div = document.getElementById('face_img');
-                        photo = String('/image/chamdom.jpg');
+                        photo = String('/img/jaeyong.jpg');
                         break;
-                    case '우럭':
-                        resultMessage = '우럭입니다!';
+                    case '이건희':
+                        resultMessage = ' ';
                         face_div = document.getElementById('face_img');
-                        photo = String('/image/chamdom.jpg');
+                        photo = String('/img/gunhee.jpg');
                         break;
-                    case '감성돔':
-                        resultMessage = '감성돔입니다!';
+                    case '이병철':
+                        resultMessage = ' ';
                         face_div = document.getElementById('face_img');
-                        photo = String('/image/chamdom.jpg');
+                        photo = String('/img/byungcheol.jpg');
                         break;
-                    case '홍돔':
-                        resultMessage = '홍돔입니다!';
+                    case '이명희':
+                        resultMessage = ' ';
                         face_div = document.getElementById('face_img');
-                        photo = String('/image/chamdom.jpg');
+                        photo = String('/img/myeonghee.jpg');
                         break;
-                    case '돌돔':
-                        resultMessage = '돌돔입니다!';
+                    case '이부진':
+                        resultMessage = ' ';
                         face_div = document.getElementById('face_img');
-                        photo = String('/image/chamdom.jpg');
+                        photo = String('/img/bujin.jpg');
                         break;
-                    case '어름돔':
-                        resultMessage = '어름돔입니다!';
+                    case '홍라희':
+                        resultMessage = ' ';
                         face_div = document.getElementById('face_img');
-                        photo = String('/image/chamdom.jpg');
+                        photo = String('/img/rahee.jpg');
                         break;
-                    case '방울복랑':
-                        resultMessage = '방울복랑입니다.';
+                    case '정주영':
+                        resultMessage = ' ';
                         face_div = document.getElementById('face_img');
-                        photo = String('/image/chamdom.jpg');
+                        photo = String('/img/jooyoung.jpg');
                         break;
-                    case '민어':
-                        resultMessage = '인어입니다!';
+                    case '정용진':
+                        resultMessage = ' ';
                         face_div = document.getElementById('face_img');
-                        photo = String('/image/chamdom.jpg');
+                        photo = String('/img/yongjin.jpg');
                         break;
-                    case '점성어':
-                        resultMessage = '점성어입니다!';
+                    case '서정진':
+                        resultMessage = ' ';
                         face_div = document.getElementById('face_img');
-                        photo = String('/image/chamdom.png');
+                        photo = String('/img/jeongjin.jpg');
                         break;
-                    case '농어':
-                        resultMessage = '농어입니다!';
+                    case '김정주':
+                        resultMessage = ' ';
                         face_div = document.getElementById('face_img');
-                        photo = String('/image/chamdom.jpg');
+                        photo = String('/img/jeongjoo.jpg');
                         break;
-                    case '라운드폼파노':
-                        resultMessage = '라운드폼파노입니다!';
+                    case '서경배':
+                        resultMessage = ' ';
                         face_div = document.getElementById('face_img');
-                        photo = String('/image/chamdom.jpg');
+                        photo = String('/img/gyeongbae.jpg');
                         break;
-                    case '감당돔':
-                        resultMessage = '감당돔입니다.';
+                    case '김범수':
+                        resultMessage = ' ';
                         face_div = document.getElementById('face_img');
-                        photo = String('/image/chamdom.jpg');
+                        photo = String('/img/beomsoo.jpg');
                         break;
-                    case '동갈돗돔':
-                        resultMessage = '동갈돗돔입니다!';
+                    case '이서현':
+                        resultMessage = ' ';
                         face_div = document.getElementById('face_img');
-                        photo = String('/image/chamdom.jpg');
-                    case '강도다리':
-                        resultMessage = '강도다리입니다!';
+                        photo = String('/img/seohyun.jpg');
+                        break;
+                    case '정의선':
+                        resultMessage = ' ';
                         face_div = document.getElementById('face_img');
-                        photo = String('/image/chamdom.jpg');
-                    case '광어':
-                        resultMessage = '광어입니다!';
+                        photo = String('/img/uiseon.jpg');
+                        break;
+                    case '최태원':
+                        resultMessage = ' ';
                         face_div = document.getElementById('face_img');
-                        photo = String('/image/chamdom.jpg');
-                    case '방어또는부시리':
-                        resultMessage = '방어 또는 부시리입니다! 아래 설명을 참고하세요!';
+                        photo = String('/img/taewon.jpg');
+                        break;
+                    case '구광모':
+                        resultMessage = ' ';
                         face_div = document.getElementById('face_img');
-                        photo = String('/image/chamdom.jpg');
-                    case '자바리친구들':
-                        resultMessage = '아래 설명을 참고하세요!!';
+                        photo = String('/img/gwangmo.jpg');
+                        break;
+                    case '방시혁':
+                        resultMessage = ' ';
                         face_div = document.getElementById('face_img');
-                        photo = String('/image/chamdom.jpg');
+                        photo = String('/img/sihyeok.jpg');
+                        break;
+                    case '김택진':
+                        resultMessage = ' ';
+                        face_div = document.getElementById('face_img');
+                        photo = String('/img/taekjin.jpg');
+                        break;
+                    case '방준혁':
+                        resultMessage = ' ';
+                        face_div = document.getElementById('face_img');
+                        photo = String('/img/joonhyuk.jpg');
+                        break;
+                    case '이해진':
+                        resultMessage = ' ';
+                        face_div = document.getElementById('face_img');
+                        photo = String('/img/haejin.jpg');
+                        break;
+                    case '조정호':
+                        resultMessage = ' ';
+                        face_div = document.getElementById('face_img');
+                        photo = String('/img/jeongho.jpg');
+                        break;
+                    case '정몽준':
+                        resultMessage = ' ';
+                        face_div = document.getElementById('face_img');
+                        photo = String('/img/mongjoon.jpg');
+                        break;
+                    case '이중근':
+                        resultMessage = ' ';
+                        face_div = document.getElementById('face_img');
+                        photo = String('/img/joonggeun.jpg');
+                        break;
+                    case '신동주':
+                        resultMessage = ' ';
+                        face_div = document.getElementById('face_img');
+                        photo = String('/img/dongjoo.jpg');
+                        break;
+                    case '신동빈':
+                        resultMessage = ' ';
+                        face_div = document.getElementById('face_img');
+                        photo = String('/img/dongbin.jpg');
+                        break;
 
-                        break;
                     default:
                         resultMessage = '다시시도하세요';
                         break;
